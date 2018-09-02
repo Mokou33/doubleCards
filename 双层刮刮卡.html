@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>43js</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<style>
+		*{margin:0;padding:0;}
+		ul{	list-style-type: none;}
+		#wrap{
+			position: relative;
+			width: 700px;
+			height: 400px;
+			margin: 60px auto;
+		}
+		#wrap >div{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.box1 span{
+			float: left;
+			background: url(images/1.png) 0 0/700px 400px no-repeat;
+		}
+		.box2 span{
+			float: left;
+			background: url(images/2.jpg) 0 0/700px 400px no-repeat;
+		}
+		#wrap:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="box1"></div>
+		<div class="box2"></div>
+	</div>
+   <script>
+		(function(){
+			var oW = document.getElementById("wrap"),
+				aSpan1 = oW.children[0].children,
+				aSpan2 = oW.children[1].children,
+				count = 0,
+				num = 10,
+				str = "",
+				sW = oW.offsetWidth/num,	//获取span的大小
+				sH = oW.offsetHeight/num;	//获取span的大小
+				console.log(sW);
+			for(var i=0; i<num; i++){//y方向
+				for(var j=0; j<num; j++){//x方向
+					str += "<span style='width:"
+							+sW+"px;height:"
+							+sH+"px;background-position:"+ -j*sW +"px "+ -i*sH+"px;'></span>";
+				}
+			}	
+
+			oW.children[0].innerHTML = str;
+			oW.children[1].innerHTML = str;
+			for(var i=0; i<num*num; i++){
+				aSpan1[i].bool = true;
+				aSpan2[i].bool = true;
+				aSpan1[i].onmouseover = function(){
+					change(this);
+				}
+				aSpan2[i].onmouseover = function(){
+					change(this);
+				}
+				function change(ele){
+					if(ele.bool){
+							ele.style.opacity = 0;
+							count++;
+							ele.bool = !ele.bool;
+							if(count>.7*num*num){
+								ele.parentNode.style.display = "none";
+								count = 0;
+							}
+						}
+					}
+			};
+		})();
+   </script>
+</body>
+</html>

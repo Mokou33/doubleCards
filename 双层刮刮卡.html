@@ -58,8 +58,7 @@
 							+sW+"px;height:"
 							+sH+"px;background-position:"+ -j*sW +"px "+ -i*sH+"px;'></span>";
 				}
-			}	
-
+			};
 			oW.children[0].innerHTML = str;
 			oW.children[1].innerHTML = str;
 			for(var i=0; i<num*num; i++){
@@ -67,10 +66,10 @@
 				aSpan2[i].bool = true;
 				aSpan1[i].onmouseover = function(){
 					change(this);
-				}
+				};
 				aSpan2[i].onmouseover = function(){
 					change(this);
-				}
+				};
 				function change(ele){
 					if(ele.bool){
 							ele.style.opacity = 0;
